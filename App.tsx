@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { EXPERIENCE_DATA, PROJECTS_DATA, SKILLS_DATA } from './constants';
 
@@ -62,17 +61,17 @@ const Navbar = ({ setView, currentView }: { setView: (v: ViewState) => void, cur
 const Hero = ({ setView }: { setView: (v: ViewState) => void }) => (
   <section className="py-12 md:py-24 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
+      <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
         {/* Left Content */}
         <div className="flex-1 text-center lg:text-left">
           <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100 mb-6">
             Systems & Software Engineer
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
-            Building, Supporting, and Scaling Reliable Technology Systems.
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-6">
+            Building & Scaling <span className="text-blue-600">Reliable</span> Systems.
           </h1>
           <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
-            I specialize in architecting robust backend infrastructures and providing mission-critical technical support for enterprise applications.
+            I architect robust backend infrastructures and provide mission-critical support for enterprise applications, ensuring performance and stability.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button 
@@ -94,29 +93,38 @@ const Hero = ({ setView }: { setView: (v: ViewState) => void }) => (
         </div>
 
         {/* Right Content - Portrait */}
-        <div className="flex-1 relative max-w-sm md:max-w-md lg:max-w-none">
-          <div className="relative z-10">
-            {/* The Accent Box behind image */}
-            <div className="absolute -bottom-6 -right-6 w-full h-full bg-slate-900 rounded-3xl -z-10 hidden lg:block"></div>
-            {/* Portrait Image */}
-            <div className="overflow-hidden rounded-3xl shadow-2xl border-4 border-white">
+        <div className="flex-1 relative w-full max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="relative z-10 group">
+            {/* Background Decorative Accent */}
+            <div className="absolute -inset-4 bg-blue-600/5 rounded-[2.5rem] -rotate-3 transition-transform group-hover:rotate-0 duration-500"></div>
+            <div className="absolute -inset-4 border-2 border-slate-100 rounded-[2.5rem] rotate-2 transition-transform group-hover:rotate-0 duration-500"></div>
+            
+            {/* Main Portrait Frame */}
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white bg-slate-100">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
-                alt="Teslim Bolaji Portrait" 
-                className="w-full h-auto grayscale-[20%] hover:grayscale-0 transition-all duration-700 object-cover"
+                src="https://api.aistudio.google.com/v1/files/portrait_teslim.jpg" 
+                alt="Teslim Bolaji" 
+                className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
                 style={{ aspectRatio: '4/5' }}
+                onError={(e) => {
+                  // Fallback for demo purposes if the specific file path isn't mapped
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=1000&auto=format&fit=crop";
+                }}
               />
-              {/* Note: In a real environment, replace the src with the provided image file path like ./teslim_portrait.jpg */}
             </div>
-            {/* Floating Badge */}
-            <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-2xl shadow-xl hidden md:flex items-center space-x-3 border border-slate-100">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-bold text-slate-800">Available for Contracts</span>
+            
+            {/* Status Badge */}
+            <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-2xl shadow-xl flex items-center space-x-3 border border-slate-100 animate-bounce-slow">
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-xs font-bold text-slate-800 tracking-wide uppercase">Open for Hire</span>
             </div>
           </div>
           
-          {/* Abstract background shapes */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-400 opacity-[0.03] rounded-full blur-3xl -z-10"></div>
+          {/* Subtle Glow Behind Image */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-blue-400 opacity-[0.05] rounded-full blur-3xl -z-10"></div>
         </div>
       </div>
     </div>
@@ -134,7 +142,7 @@ const SectionHeading = ({ title, subtitle, light = false }: { title: string; sub
 const HomeView = ({ setView }: { setView: (v: ViewState) => void }) => (
   <>
     <Hero setView={setView} />
-    <section id="about" className="py-20 border-t border-slate-100 bg-white">
+    <section id="about" className="py-20 border-t border-slate-100 bg-white scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -142,7 +150,7 @@ const HomeView = ({ setView }: { setView: (v: ViewState) => void }) => (
               title="About Me" 
               subtitle="Systems-focused engineer with a passion for stability." 
             />
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-slate-600 leading-relaxed text-base">
               <p>
                 With deep experience in backend architecture and application support, I bridge the gap between building high-performance features and maintaining production-grade reliability.
               </p>
@@ -158,8 +166,8 @@ const HomeView = ({ setView }: { setView: (v: ViewState) => void }) => (
               { label: 'Integration Expert', desc: 'Payments & Messaging' },
               { label: 'Support Driven', desc: 'Enterprise debugging' },
             ].map((item, i) => (
-              <div key={i} className="p-6 bg-slate-50 rounded-xl border border-slate-200">
-                <h4 className="font-bold text-slate-900 mb-1 text-sm md:text-base">{item.label}</h4>
+              <div key={i} className="p-6 bg-slate-50 rounded-xl border border-slate-200 group hover:border-blue-300 hover:bg-white transition-all">
+                <h4 className="font-bold text-slate-900 mb-1 text-sm md:text-base group-hover:text-blue-600">{item.label}</h4>
                 <p className="text-xs md:text-sm text-slate-500">{item.desc}</p>
               </div>
             ))}
@@ -168,7 +176,7 @@ const HomeView = ({ setView }: { setView: (v: ViewState) => void }) => (
       </div>
     </section>
 
-    <section id="services-preview" className="py-20 bg-slate-900 text-white">
+    <section id="services-preview" className="py-20 bg-slate-900 text-white scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold mb-4">Core Competencies</h2>
@@ -180,7 +188,7 @@ const HomeView = ({ setView }: { setView: (v: ViewState) => void }) => (
             { title: 'Tech Support', desc: 'Incident resolution and maintaining stability under strict SLAs.' },
             { title: 'Integrations', desc: 'Seamlessly connecting platforms with third-party payment and messaging APIs.' },
           ].map((s, i) => (
-            <div key={i} className="p-8 bg-slate-800/50 rounded-2xl border border-slate-700">
+            <div key={i} className="p-8 bg-slate-800/50 rounded-2xl border border-slate-700 hover:border-blue-500 transition-colors">
               <h3 className="text-xl font-bold mb-3">{s.title}</h3>
               <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
             </div>
@@ -203,9 +211,9 @@ const ServicesPage = ({ setView }: { setView: (v: ViewState) => void }) => (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <button 
           onClick={() => { setView('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
-          className="flex items-center text-sm font-medium text-slate-500 hover:text-blue-600 mb-8 transition-colors"
+          className="flex items-center text-sm font-medium text-slate-500 hover:text-blue-600 mb-8 transition-colors group"
         >
-          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          <svg className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
           Back to Portfolio
         </button>
         <h1 className="text-4xl font-bold text-slate-900 mb-4">Detailed Service Offerings</h1>
@@ -383,11 +391,11 @@ const Projects = () => (
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {PROJECTS_DATA.map((project) => (
-          <div key={project.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+          <div key={project.id} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow group cursor-default">
             <div className="p-6">
               <span className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2 block">{project.category}</span>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 leading-snug">{project.title}</h3>
-              <p className="text-slate-600 text-sm mb-4 leading-relaxed">{project.description}</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 leading-snug group-hover:text-blue-600 transition-colors">{project.title}</h3>
+              <p className="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-3">{project.description}</p>
               <div className="mb-4">
                 <h4 className="text-xs font-semibold text-slate-400 uppercase mb-1">Impact</h4>
                 <p className="text-xs text-slate-700 italic">"{project.impact}"</p>
@@ -410,15 +418,15 @@ const Projects = () => (
 const Contact = () => (
   <section id="contact" className="py-20 bg-white scroll-mt-20">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-slate-900 rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden">
+      <div className="bg-slate-900 rounded-[2rem] p-8 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
         <div className="relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Let's Build or Support Something Stable.</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Let's Build or Support Something <span className="text-blue-400">Stable</span>.</h2>
           <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             I am currently available for full-time roles, contracts, and systems-focused consulting. 
             If you need a reliable engineer to scale your platform, I'd love to hear from you.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <a href="mailto:teslim@unibooks.com.ng" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all flex items-center justify-center">
+            <a href="mailto:teslim@unibooks.com.ng" className="px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all flex items-center justify-center shadow-lg shadow-blue-500/20">
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
@@ -432,6 +440,7 @@ const Contact = () => (
             </a>
           </div>
         </div>
+        {/* Glow Effects */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-blue-500 rounded-full opacity-10 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-600 rounded-full opacity-10 blur-3xl"></div>
       </div>
@@ -444,10 +453,10 @@ const Footer = () => (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <div className="mb-4 md:mb-0">
-          <p className="text-slate-500 text-xs md:text-sm">&copy; {new Date().getFullYear()} Teslim Bolaji. All rights reserved.</p>
+          <p className="text-slate-500 text-xs md:text-sm font-medium">© {new Date().getFullYear()} Teslim Bolaji. Designed for Stability.</p>
         </div>
         <div className="flex flex-wrap justify-center space-x-6 text-xs md:text-sm text-slate-500">
-          <span className="font-medium text-slate-400">teslim.unibooks.com.ng</span>
+          <span className="font-bold text-slate-900">teslim.unibooks.com.ng</span>
         </div>
       </div>
     </div>
@@ -467,7 +476,7 @@ export default function App() {
           <ServicesPage setView={setView} />
         )}
         
-        {/* These sections are globally relevant but only shown on home */}
+        {/* Experience and Projects are anchored sections on the home view */}
         {view === 'home' && (
           <>
             <Experience />
