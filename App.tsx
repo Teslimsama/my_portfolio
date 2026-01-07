@@ -655,6 +655,19 @@ const Contact = () => (
 							</svg>
 							GitHub Profile
 						</a>
+						<a
+							href="https://ng.linkedin.com/in/teslim-bolaji-9551b3246"
+							target="_blank"
+							rel="noreferrer"
+							className="px-8 py-4 bg-[#0A66C2] text-white font-bold rounded-xl hover:bg-[#004182] transition-all flex items-center justify-center">
+							<svg
+								className="w-5 h-5 mr-2"
+								fill="currentColor"
+								viewBox="0 0 24 24">
+								<path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.306c0-4.613 5.48-5.47 5.48 0v8.306h5v-10.502c0-8.118-8.74-7.93-8.74-2.453v-3.045z" />
+							</svg>
+							LinkedIn
+						</a>
 					</div>
 				</div>
 				{/* Glow Effects */}
@@ -688,7 +701,7 @@ export default function App() {
 	const [view, setView] = useState<ViewState>("home");
 
 	return (
-		<div className="min-h-screen flex flex-col bg-[Ff8fafc]">
+		<div className="min-h-screen flex flex-col bg-[#f8fafc]">
 			<Navbar setView={setView} currentView={view} />
 			<main className="flex-grow">
 				{view === "home" ? (
