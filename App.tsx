@@ -643,7 +643,7 @@ const Contact = () => (
 							Email Me Directly
 						</a>
 						<a
-							href="https://github.com"
+							href="https://github.com/Teslimsama/"
 							target="_blank"
 							rel="noreferrer"
 							className="px-8 py-4 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-all flex items-center justify-center">
