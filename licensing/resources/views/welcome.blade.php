@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bolakaz Licensing API</title>
+    <title>TBO Digital Solutions — Licensing API</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex items-center justify-center">
     <div class="text-center space-y-6 max-w-lg mx-auto p-8">
-        <h1 class="text-3xl font-bold text-gray-900">⚡ Bolakaz Licensing</h1>
+        <h1 class="text-3xl font-bold text-gray-900">TBO Digital Solutions</h1>
         <p class="text-gray-600">
-            This is the licensing API server. Purchase pages are served by the main site.
+            Licensing API server. Purchase pages are served by the main site.
         </p>
         <div class="bg-white rounded-lg border border-gray-200 p-6 space-y-3 text-left">
             <h2 class="font-semibold text-gray-900">Available Products</h2>

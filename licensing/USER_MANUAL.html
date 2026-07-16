@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bolakaz Licensing — User Manual</title>
+<title>TBO Digital Solutions — User Manual</title>
 <style>
   :root {
     --amber: #d97706;
@@ -179,7 +179,7 @@
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <div class="cover">
   <div class="logo">⚡</div>
-  <h1>Bolakaz Licensing</h1>
+  <h1>TBO Digital Solutions</h1>
   <p class="subtitle">User Manual &mdash; Administrator &amp; Developer Guide</p>
   <p class="meta">Version 1.0 &middot; July 2026</p>
 </div>
@@ -228,7 +228,7 @@
 <!-- ═══════════════════════════════════════════════════════════════════ -->
 <h1 id="overview">1 &mdash; System Overview</h1>
 
-<p>The <strong>Bolakaz Licensing</strong> system is a central platform that handles software license
+<p>The <strong>TBO Digital Solutions</strong> system is a central platform that handles software license
 sales and validation across multiple products. Instead of every client site holding its own
 Paystack keys and managing its own code generation, they all use this single service.</p>
 
@@ -245,7 +245,7 @@ Paystack keys and managing its own code generation, they all use this single ser
   <tr><th>Role</th><th>Who</th><th>What They Do</th></tr>
   <tr>
     <td><strong>Admin</strong></td>
-    <td>You (Bolakaz owner)</td>
+    <td>You (System Admin)</td>
     <td>Create products, set pricing, generate client credentials, view license codes</td>
   </tr>
   <tr>
@@ -311,7 +311,7 @@ Paystack keys and managing its own code generation, they all use this single ser
 <p>Use the credentials created during deployment:</p>
 <table>
   <tr><th>Field</th><th>Value</th></tr>
-  <tr><td>Email</td><td><code>admin@bolakaz.ng</code></td></tr>
+  <tr><td>Email</td><td><code>admin@tbo.digital</code></td></tr>
   <tr><td>Password</td><td>(set during deployment)</td></tr>
 </table>
 <p>You will see the dashboard with stats: active products, total codes issued, lifetime revenue.</p>
@@ -727,7 +727,7 @@ Filament admin all work for any product you add.</p>
 </ol>
 
 <h2>Production .env (on VPS)</h2>
-<pre><code>APP_NAME="Bolakaz Licensing"
+<pre><code>APP_NAME="TBO Digital Licensing"
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://api.teslim.unibooks.com.ng
@@ -749,8 +749,8 @@ MAIL_HOST=(your-smtp-host)
 MAIL_PORT=587
 MAIL_USERNAME=(your-smtp-username)
 MAIL_PASSWORD=(your-smtp-password)
-MAIL_FROM_ADDRESS=noreply@bolakaz.ng
-MAIL_FROM_NAME="Bolakaz Licensing"</code></pre>
+MAIL_FROM_ADDRESS=noreply@tbo.digital
+MAIL_FROM_NAME="TBO Digital Solutions"</code></pre>
 
 <h2>Vercel Setup</h2>
 <p>In the Vercel dashboard for your portfolio project, add an environment variable:</p>
@@ -830,7 +830,7 @@ Laravel uses for user passwords. The <code>client_key</code> is a public identif
 <hr style="margin: 48px 0; border: none; border-top: 2px solid var(--gray-200);">
 
 <p style="text-align: center; color: var(--gray-500); font-size: 13px;">
-  Bolakaz Licensing &mdash; User Manual v1.0 &mdash; July 2026<br>
+  TBO Digital Solutions &mdash; User Manual v1.0 &mdash; July 2026<br>
   For support, contact the system administrator.
 </p>
 

@@ -9,7 +9,7 @@
     <div style="max-width: 480px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden;">
         <!-- Header -->
         <div style="background-color: #d97706; padding: 24px; text-align: center;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 20px;">⚡ Bolakaz Licensing</h1>
+            <h1 style="color: #ffffff; margin: 0; font-size: 20px;">TBO Digital Solutions</h1>
         </div>
 
         <!-- Body -->
@@ -57,7 +57,7 @@
         <!-- Footer -->
         <div style="background-color: #f9fafb; border-top: 1px solid #e5e7eb; padding: 16px 32px; text-align: center;">
             <p style="color: #9ca3af; font-size: 12px; margin: 0;">
-                &copy; {{ date('Y') }} Bolakaz. All rights reserved.
+                &copy; {{ date('Y') }} TBO Digital Solutions. All rights reserved.
             </p>
         </div>
     </div>

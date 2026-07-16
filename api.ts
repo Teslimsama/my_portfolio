@@ -1,5 +1,5 @@
 /**
- * API configuration for the Bolakaz Licensing backend.
+ * API configuration for the TBO Digital Solutions licensing backend.
  *
  * In development, the Laravel app runs on a separate port (e.g., licensing.test
  * or localhost:8000). In production, it runs at api.teslim.unibooks.com.ng.
