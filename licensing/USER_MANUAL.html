@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolakaz Licensing — User Manual</title>
+<style>
+  :root {
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --green: #059669;
+    --green-light: #ecfdf5;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: var(--gray-900);
+    line-height: 1.7;
+    font-size: 14px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  /* Cover page */
+  .cover {
+    text-align: center;
+    padding: 80px 0 60px;
+    page-break-after: always;
+    border-bottom: 3px solid var(--amber);
+    margin-bottom: 48px;
+  }
+  .cover .logo { font-size: 48px; margin-bottom: 16px; }
+  .cover h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 18px; color: var(--gray-500); margin-bottom: 32px; }
+  .cover .meta { font-size: 13px; color: var(--gray-500); }
+
+  /* Headings */
+  h1 { font-size: 28px; font-weight: 800; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--gray-200); page-break-after: avoid; }
+  h2 { font-size: 20px; font-weight: 700; margin: 36px 0 12px; color: var(--amber); page-break-after: avoid; }
+  h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; page-break-after: avoid; }
+
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 16px 24px; }
+  li { margin-bottom: 6px; }
+
+  /* Code */
+  code {
+    background: var(--gray-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+  }
+  pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+  pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+
+  /* Callout boxes */
+  .callout {
+    border-left: 4px solid var(--blue);
+    background: var(--blue-light);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 0 0 16px;
+    font-size: 13px;
+  }
+  .callout.warn {
+    border-left-color: var(--red);
+    background: var(--red-light);
+  }
+  .callout.tip {
+    border-left-color: var(--green);
+    background: var(--green-light);
+  }
+  .callout strong { display: block; margin-bottom: 4px; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 16px;
+    font-size: 13px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--gray-200);
+  }
+  th {
+    background: var(--gray-50);
+    font-weight: 600;
+  }
+  tr:nth-child(even) td { background: var(--gray-50); }
+
+  /* Steps */
+  .step {
+    counter-increment: step;
+    margin: 0 0 20px;
+    padding-left: 48px;
+    position: relative;
+  }
+  .step::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--amber);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .steps { counter-reset: step; margin: 16px 0 24px; }
+
+  /* Architecture diagram */
+  .diagram {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 16px 0;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* Print */
+  @media print {
+    body { font-size: 11px; max-width: none; padding: 0; }
+    h1 { font-size: 22px; page-break-before: always; }
+    h1:first-of-type { page-break-before: avoid; }
+    h2 { font-size: 16px; }
+    pre { font-size: 10px; white-space: pre-wrap; }
+    .cover { padding: 40px 0 30px; }
+    @page { margin: 20mm; }
+  }
+
+  /* TOC */
+  .toc { margin: 24px 0; }
+  .toc a { color: var(--blue); text-decoration: none; }
+  .toc ol { list-style: decimal; }
+  .toc ol ol { list-style: lower-alpha; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- COVER -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="logo">⚡</div>
+  <h1>Bolakaz Licensing</h1>
+  <p class="subtitle">User Manual &mdash; Administrator &amp; Developer Guide</p>
+  <p class="meta">Version 1.0 &middot; July 2026</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1>Table of Contents</h1>
+<div class="toc">
+<ol>
+  <li><a href="#overview">System Overview</a></li>
+  <li><a href="#architecture">Architecture &amp; URLs</a></li>
+  <li><a href="#admin-panel">Admin Panel (Filament)</a>
+    <ol>
+      <li><a href="#admin-login">Logging In</a></li>
+      <li><a href="#admin-products">Managing Products</a></li>
+      <li><a href="#admin-tiers">Managing Price Tiers</a></li>
+      <li><a href="#admin-credentials">Generating Client Credentials</a></li>
+      <li><a href="#admin-codes">Viewing License Codes</a></li>
+    </ol>
+  </li>
+  <li><a href="#purchase-flow">Purchase Flow (for End Users)</a>
+    <ol>
+      <li><a href="#purchase-link">The Purchase Link</a></li>
+      <li><a href="#purchase-steps">How a User Purchases a License</a></li>
+    </ol>
+  </li>
+  <li><a href="#redemption-api">Redemption API (for Client Site Developers)</a>
+    <ol>
+      <li><a href="#redeem-overview">How It Works</a></li>
+      <li><a href="#redeem-request">API Request</a></li>
+      <li><a href="#redeem-response">API Response</a></li>
+      <li><a href="#redeem-code-php">Example: PHP / Laravel</a></li>
+      <li><a href="#redeem-code-js">Example: Node.js / JavaScript</a></li>
+      <li><a href="#redeem-code-python">Example: Python</a></li>
+    </ol>
+  </li>
+  <li><a href="#new-product">Adding a New Product (Zero Code Changes)</a></li>
+  <li><a href="#deployment">Production Deployment</a></li>
+  <li><a href="#troubleshooting">Troubleshooting &amp; FAQ</a></li>
+</ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 1. SYSTEM OVERVIEW -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="overview">1 &mdash; System Overview</h1>
+
+<p>The <strong>Bolakaz Licensing</strong> system is a central platform that handles software license
+sales and validation across multiple products. Instead of every client site holding its own
+Paystack keys and managing its own code generation, they all use this single service.</p>
+
+<h2>What It Does</h2>
+<ul>
+  <li><strong>Sells license codes</strong> for any number of products (Stock-Taking, CRM, POS, etc.)</li>
+  <li><strong>Validates codes</strong> when client sites redeem them</li>
+  <li><strong>Prevents fraud</strong> &mdash; server-computed pricing, amount cross-checking, race-condition protection</li>
+  <li><strong>Requires zero code changes</strong> to add a new product &mdash; just add it in the admin panel</li>
+</ul>
+
+<h2>The Three Roles</h2>
+<table>
+  <tr><th>Role</th><th>Who</th><th>What They Do</th></tr>
+  <tr>
+    <td><strong>Admin</strong></td>
+    <td>You (Bolakaz owner)</td>
+    <td>Create products, set pricing, generate client credentials, view license codes</td>
+  </tr>
+  <tr>
+    <td><strong>Client Site</strong></td>
+    <td>Shop owners / site admins</td>
+    <td>Put the purchase link on their site, call the redeem API when users enter codes</td>
+  </tr>
+  <tr>
+    <td><strong>End User</strong></td>
+    <td>Customers of client sites</td>
+    <td>Visit the purchase link, pay via Paystack, receive a license code, enter it on the client site</td>
+  </tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 2. ARCHITECTURE -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="architecture">2 &mdash; Architecture &amp; URLs</h1>
+
+<h2>Production URLs</h2>
+<table>
+  <tr><th>What</th><th>URL</th><th>Hosted On</th></tr>
+  <tr><td>Purchase pages (user-facing)</td><td><code>https://teslim.unibooks.com.ng/purchase/{slug}</code></td><td>Vercel</td></tr>
+  <tr><td>API server (backend)</td><td><code>https://api.teslim.unibooks.com.ng</code></td><td>Your VPS</td></tr>
+  <tr><td>Admin panel</td><td><code>https://api.teslim.unibooks.com.ng/admin</code></td><td>Your VPS</td></tr>
+</table>
+
+<div class="diagram">
+┌─────────────────────────────────────────────────┐
+│  VERCEL  (teslim.unibooks.com.ng)               │
+│                                                 │
+│  React Portfolio                                │
+│  ├── /                     Your portfolio       │
+│  ├── /purchase/:slug       Purchase page        │
+│  └── /purchase/:slug/success  Code display      │
+│              │                                  │
+│              │ Calls JSON API                   │
+└──────────────┼──────────────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────────────┐
+│  YOUR VPS  (api.teslim.unibooks.com.ng)          │
+│                                                  │
+│  Laravel App                                     │
+│  ├── GET  /api/products/{slug}     Product info  │
+│  ├── POST /api/purchase/initiate   Start payment │
+│  ├── GET  /api/purchase/verify     Confirm + gen │
+│  ├── POST /api/redeem-code         Validate code │
+│  ├── POST /api/webhook/paystack    Paystack call │
+│  └── /admin                        Filament      │
+└──────────────────────────────────────────────────┘
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 3. ADMIN PANEL -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="admin-panel">3 &mdash; Admin Panel (Filament)</h1>
+
+<p>The admin panel is where you manage everything. It lives at:</p>
+<pre><code>https://api.teslim.unibooks.com.ng/admin</code></pre>
+
+<h2 id="admin-login">3.1 &mdash; Logging In</h2>
+<p>Use the credentials created during deployment:</p>
+<table>
+  <tr><th>Field</th><th>Value</th></tr>
+  <tr><td>Email</td><td><code>admin@bolakaz.ng</code></td></tr>
+  <tr><td>Password</td><td>(set during deployment)</td></tr>
+</table>
+<p>You will see the dashboard with stats: active products, total codes issued, lifetime revenue.</p>
+
+<h2 id="admin-products">3.2 &mdash; Managing Products</h2>
+<p>Navigate to <strong>Products</strong> in the sidebar. Each row is a licensable product.</p>
+
+<h3>Creating a Product</h3>
+<div class="steps">
+<div class="step">
+  <strong>Click "New Product"</strong>
+  <p>Fill in the form:</p>
+  <table>
+    <tr><th>Field</th><th>Example</th><th>Notes</th></tr>
+    <tr><td>Name</td><td>Bolakaz Stock-Taking</td><td>Display name shown on purchase page</td></tr>
+    <tr><td>Slug</td><td>bolakaz-stocktaking</td><td>URL-safe ID; becomes <code>/purchase/bolakaz-stocktaking</code></td></tr>
+    <tr><td>Code Prefix</td><td>BLKZ</td><td>4 letters; all license codes for this product start with this</td></tr>
+    <tr><td>Description</td><td>Stock-taking &amp; inventory management...</td><td>Optional, shown on purchase page</td></tr>
+    <tr><td>Daily Rate</td><td>2000.00</td><td>Base price in Naira per day</td></tr>
+    <tr><td>Is Active</td><td>ON</td><td>Inactive products are hidden from the purchase page</td></tr>
+  </table>
+</div>
+<div class="step">
+  <strong>Click "Create"</strong>
+  <p>The product is now live at <code>https://teslim.unibooks.com.ng/purchase/bolakaz-stocktaking</code>.</p>
+</div>
+</div>
+
+<h2 id="admin-tiers">3.3 &mdash; Managing Price Tiers</h2>
+<p>Navigate to <strong>Price Tiers</strong>. Each tier belongs to one product.</p>
+
+<h3>Creating Tiers</h3>
+<table>
+  <tr><th>Tier Key</th><th>Duration</th><th>Discount</th><th>Use Case</th></tr>
+  <tr><td><code>fixed_3day</code></td><td>3 days</td><td>5%</td><td>Short trial</td></tr>
+  <tr><td><code>fixed_7day</code></td><td>7 days</td><td>10%</td><td>Weekly pass</td></tr>
+  <tr><td><code>fixed_30day</code></td><td>30 days</td><td>20%</td><td>Monthly pass</td></tr>
+  <tr><td><code>custom</code></td><td>User picks</td><td>0%</td><td>Flexible duration at base rate</td></tr>
+</table>
+
+<p><strong>Pricing formula:</strong> <code>daily_rate &times; duration_days &times; (1 - discount_pct / 100)</code></p>
+
+<p>For the "custom" tier, set <strong>Duration Days</strong> to empty and <strong>Discount %</strong> to 0.
+The user will enter how many days they want on the purchase page, and the price will
+be <code>daily_rate &times; custom_days</code> with no discount.</p>
+
+<h2 id="admin-credentials">3.4 &mdash; Generating Client Credentials</h2>
+<p>Navigate to <strong>Client Credentials</strong>. Each credential grants one client site the ability
+to redeem codes for one specific product.</p>
+
+<div class="callout warn">
+  <strong>⚠️ Critical: The API secret is shown ONLY ONCE.</strong>
+  After creating a credential, Filament will display the plaintext secret in a
+  notification. Copy it immediately. It is stored as a bcrypt hash in the database
+  and cannot be recovered later. If lost, you must create a new credential.
+</div>
+
+<h3>Creating a Credential</h3>
+<div class="steps">
+<div class="step">
+  <strong>Click "New Client Credential"</strong>
+  <table>
+    <tr><th>Field</th><th>Example</th></tr>
+    <tr><td>Product</td><td>Bolakaz Stock-Taking</td></tr>
+    <tr><td>Client Name</td><td>ShopName - shopname.ng</td></tr>
+    <tr><td>Domain</td><td>shopname.ng</td></tr>
+    <tr><td>Is Active</td><td>ON</td></tr>
+  </table>
+</div>
+<div class="step">
+  <strong>Click "Create"</strong>
+  <p>Filament auto-generates the <code>client_key</code> and <code>api_secret</code>. Two notifications appear:</p>
+  <ul>
+    <li><strong>Success notification:</strong> shows the <code>client_key</code></li>
+    <li><strong>Warning notification:</strong> shows the <code>api_secret</code> in plaintext &mdash; copy it NOW</li>
+  </ul>
+</div>
+<div class="step">
+  <strong>Give these two values to the client site owner:</strong>
+  <pre><code>X-Client-Key:    SHOPNAME_aB3xYz...9fG2
+X-Client-Secret:  f8a2c1e9d7b6...3f5e1a (40 characters)</code></pre>
+  <p>They will use these in their server-side code to call the redemption API.
+  These values go in their <code>.env</code> file &mdash; never in frontend code.</p>
+</div>
+</div>
+
+<div class="callout tip">
+  <strong>💡 One credential = one product + one client site.</strong>
+  If a site uses two products (e.g., Stock-Taking AND CRM), create two separate
+  credentials &mdash; one for each product. This way, if a credential is compromised,
+  only one product on one site is affected.
+</div>
+
+<h2 id="admin-codes">3.5 &mdash; Viewing License Codes</h2>
+<p>Navigate to <strong>License Codes</strong>. This is a read-only view showing every code ever
+generated, filterable by product and status (unused / redeemed). You can see:</p>
+<ul>
+  <li>Which code was redeemed by which client site</li>
+  <li>When it was redeemed</li>
+  <li>The payment reference and amount paid</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 4. PURCHASE FLOW -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="purchase-flow">4 &mdash; Purchase Flow (for End Users)</h1>
+
+<h2 id="purchase-link">4.1 &mdash; The Purchase Link</h2>
+
+<p>Each product has a single, permanent purchase URL:</p>
+<pre><code>https://teslim.unibooks.com.ng/purchase/{product-slug}</code></pre>
+
+<p>Examples:</p>
+<table>
+  <tr><th>Product</th><th>Purchase URL</th></tr>
+  <tr><td>Bolakaz Stock-Taking</td><td><code>https://teslim.unibooks.com.ng/purchase/bolakaz-stocktaking</code></td></tr>
+  <tr><td>Bolakaz CRM (future)</td><td><code>https://teslim.unibooks.com.ng/purchase/bolakaz-crm</code></td></tr>
+</table>
+
+<p><strong>Client sites put this link wherever they want users to buy a license</strong> &mdash;
+a "Buy License" button, a paywall page, a pricing card, an email, anywhere.</p>
+
+<h2 id="purchase-steps">4.2 &mdash; How a User Purchases a License</h2>
+
+<div class="steps">
+<div class="step">
+  <strong>User visits the purchase link</strong>
+  <p>They see the product name, description, daily rate, and tier options
+  (e.g., 3 Days / 7 Days / 30 Days / Custom). Prices are computed server-side
+  from the tiers you configured in Filament.</p>
+</div>
+<div class="step">
+  <strong>User selects a plan and enters their email</strong>
+  <p>For fixed tiers: clicks the tier card. For custom: enters number of days.
+  The total price updates live.</p>
+</div>
+<div class="step">
+  <strong>User clicks "Pay with Paystack"</strong>
+  <p>A Paystack popup opens. The user completes payment with card, bank transfer,
+  or USSD. They never leave the page.</p>
+</div>
+<div class="step">
+  <strong>Payment confirmed &mdash; code appears</strong>
+  <p>The user sees a success page with their license code displayed prominently
+  and a "Copy" button. The code is also emailed to them.</p>
+</div>
+<div class="step">
+  <strong>User enters the code on the client site</strong>
+  <p>The client site's backend calls the redemption API to validate the code.
+  If valid, the license is activated for the purchased duration.</p>
+</div>
+</div>
+
+<div class="callout">
+  <strong>🔒 Security note:</strong> The price is always computed on the server.
+  The client never sends an amount &mdash; the Laravel API calculates it using the
+  product's daily rate and tier configuration. On verification, the amount Paystack
+  confirms is cross-checked against the server-computed amount. If they don't match,
+  no code is issued.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5. REDEMPTION API -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="redemption-api">5 &mdash; Redemption API (for Client Site Developers)</h1>
+
+<p>This section is for the developer who maintains the client site. Give them this
+section of the manual along with their credentials.</p>
+
+<h2 id="redeem-overview">5.1 &mdash; How It Works</h2>
+<ol>
+  <li>User enters a license code on the client site (a form or input field)</li>
+  <li>The client site's <strong>backend</strong> sends the code to the redemption API</li>
+  <li>The API responds with <code>valid: true</code> or <code>valid: false</code></li>
+  <li>If valid, the client site activates the license for the returned duration</li>
+</ol>
+
+<div class="callout warn">
+  <strong>⚠️ Never call this API from frontend JavaScript.</strong>
+  Your <code>api_secret</code> would be exposed to anyone who opens DevTools.
+  Always call the redemption API from your server-side code (PHP, Node, Python, etc.).
+</div>
+
+<h2 id="redeem-request">5.2 &mdash; API Request</h2>
+
+<table>
+  <tr><th>Item</th><th>Value</th></tr>
+  <tr><td>Method</td><td><code>POST</code></td></tr>
+  <tr><td>URL</td><td><code>https://api.teslim.unibooks.com.ng/api/redeem-code</code></td></tr>
+  <tr><td>Headers</td><td><code>X-Client-Key: {your_client_key}</code><br><code>X-Client-Secret: {your_api_secret}</code><br><code>Content-Type: application/json</code></td></tr>
+  <tr><td>Body</td><td>JSON: <code>{ "code": "...", "domain": "..." }</code></td></tr>
+</table>
+
+<h3>Request Body Fields</h3>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+  <tr><td><code>code</code></td><td>string</td><td>Yes</td><td>The 19-character license code (e.g., <code>BLKZ-K3M9-XQ2P-4RTN</code>)</td></tr>
+  <tr><td><code>domain</code></td><td>string</td><td>Yes</td><td>The domain of the site redeeming the code (for your records)</td></tr>
+</table>
+
+<h2 id="redeem-response">5.3 &mdash; API Response</h2>
+
+<h3>Success (200 OK)</h3>
+<pre><code>{
+  "valid": true,
+  "duration_days": 7
+}</code></pre>
+
+<h3>Invalid Credentials (401 Unauthorized)</h3>
+<pre><code>{
+  "valid": false,
+  "reason": "invalid credentials"
+}</code></pre>
+
+<h3>Invalid or Already Redeemed Code (422 Unprocessable)</h3>
+<pre><code>{
+  "valid": false,
+  "reason": "License code not found, already redeemed, or not valid for this product."
+}</code></pre>
+
+<h3>Rate Limited (429 Too Many Requests)</h3>
+<p>More than 5 attempts per minute from the same IP. Wait and retry.</p>
+
+<h2 id="redeem-code-php">5.4 &mdash; Example: PHP / Laravel</h2>
+<pre><code>&lt;?php
+
+use Illuminate\Support\Facades\Http;
+
+function redeemLicenseCode(string $code, string $domain): array
+{
+    $response = Http::withHeaders([
+        'X-Client-Key'    => env('BOLAKAZ_CLIENT_KEY'),
+        'X-Client-Secret' => env('BOLAKAZ_CLIENT_SECRET'),
+        'Content-Type'    => 'application/json',
+    ])->post('https://api.teslim.unibooks.com.ng/api/redeem-code', [
+        'code'   => strtoupper(trim($code)),
+        'domain' => $domain,
+    ]);
+
+    return $response->json();
+}
+
+// ── Usage in a controller ──
+
+public function activateLicense(Request $request)
+{
+    $request->validate([
+        'license_code' => 'required|string|size:19',
+    ]);
+
+    $result = redeemLicenseCode(
+        $request->input('license_code'),
+        $request->getHost(),
+    );
+
+    if ($result['valid'] ?? false) {
+        $days = $result['duration_days'];
+        $expiresAt = now()->addDays($days);
+
+        // Store the license activation in your database
+        // License::create([...]);
+
+        return back()->with('success', "License activated for {$days} days!");
+    }
+
+    return back()->withErrors([
+        'license_code' => $result['reason'] ?? 'Invalid license code.',
+    ]);
+}</code></pre>
+
+<h3>Your .env file</h3>
+<pre><code>BOLAKAZ_CLIENT_KEY=SHOPNAME_aB3xYz...9fG2
+BOLAKAZ_CLIENT_SECRET=f8a2c1e9d7b6...3f5e1a</code></pre>
+
+<h2 id="redeem-code-js">5.5 &mdash; Example: Node.js / JavaScript</h2>
+<pre><code>// Server-side only — never expose BOLAKAZ_CLIENT_SECRET to the browser
+
+const BOLAKAZ_CLIENT_KEY = process.env.BOLAKAZ_CLIENT_KEY;
+const BOLAKAZ_CLIENT_SECRET = process.env.BOLAKAZ_CLIENT_SECRET;
+
+async function redeemLicenseCode(code, domain) {
+  const response = await fetch(
+    'https://api.teslim.unibooks.com.ng/api/redeem-code',
+    {
+      method: 'POST',
+      headers: {
+        'X-Client-Key': BOLAKAZ_CLIENT_KEY,
+        'X-Client-Secret': BOLAKAZ_CLIENT_SECRET,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        code: code.trim().toUpperCase(),
+        domain: domain,
+      }),
+    },
+  );
+
+  return response.json();
+}
+
+// ── Usage in an Express route ──
+
+app.post('/activate-license', async (req, res) => {
+  const { licenseCode } = req.body;
+  const result = await redeemLicenseCode(licenseCode, req.hostname);
+
+  if (result.valid) {
+    // Activate the license for result.duration_days
+    res.json({ success: true, days: result.duration_days });
+  } else {
+    res.status(422).json({ success: false, message: result.reason });
+  }
+});</code></pre>
+
+<h2 id="redeem-code-python">5.6 &mdash; Example: Python</h2>
+<pre><code>import os
+import requests
+
+BOLAKAZ_CLIENT_KEY = os.environ["BOLAKAZ_CLIENT_KEY"]
+BOLAKAZ_CLIENT_SECRET = os.environ["BOLAKAZ_CLIENT_SECRET"]
+
+def redeem_license_code(code: str, domain: str) -> dict:
+    response = requests.post(
+        "https://api.teslim.unibooks.com.ng/api/redeem-code",
+        headers={
+            "X-Client-Key": BOLAKAZ_CLIENT_KEY,
+            "X-Client-Secret": BOLAKAZ_CLIENT_SECRET,
+            "Content-Type": "application/json",
+        },
+        json={
+            "code": code.strip().upper(),
+            "domain": domain,
+        },
+    )
+    return response.json()
+
+
+# ── Usage in a Flask/Django view ──
+
+def activate_license(request):
+    code = request.POST.get("license_code")
+    result = redeem_license_code(code, request.get_host())
+
+    if result.get("valid"):
+        days = result["duration_days"]
+        # Activate the license for `days` days
+        return {"success": True, "days": days}
+    else:
+        return {"success": False, "message": result.get("reason", "Invalid code")}</code></pre>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 6. ADDING A NEW PRODUCT -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="new-product">6 &mdash; Adding a New Product (Zero Code Changes)</h1>
+
+<p>This is the core design principle: onboarding a brand new product requires
+<strong>no code changes and no deployment</strong>. Everything is data-driven.</p>
+
+<div class="steps">
+<div class="step">
+  <strong>Create the product in Filament</strong>
+  <p>Admin → Products → New Product. Fill in name, slug, code prefix, daily rate.</p>
+</div>
+<div class="step">
+  <strong>Add its price tiers</strong>
+  <p>Admin → Price Tiers → New. For each tier, select the product and set the
+  tier key, duration, and discount.</p>
+</div>
+<div class="step">
+  <strong>Generate client credentials for each site</strong>
+  <p>Admin → Client Credentials → New. One credential per (product + client site).
+  Give the <code>client_key</code> and <code>api_secret</code> to the site owner.</p>
+</div>
+<div class="step">
+  <strong>Give the site owner the purchase link</strong>
+  <pre><code>https://teslim.unibooks.com.ng/purchase/{product-slug}</code></pre>
+  <p>The React app automatically loads the product and its tiers from the API.
+  The purchase page works instantly — no frontend changes needed.</p>
+</div>
+</div>
+
+<p><strong>That's it.</strong> Four steps. No code. No deploy. The purchase page, tier display,
+price calculation, Paystack integration, code generation, redemption API, and
+Filament admin all work for any product you add.</p>
+
+<div class="callout tip">
+  <strong>💡 Pro tip:</strong> Each product can have a completely different pricing
+  structure. One product might offer 3/7/30-day tiers at ₦2,000/day with discounts,
+  while another offers 14/30/90-day tiers at ₦5,000/day. Configure it in Filament
+  and it just works.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 7. DEPLOYMENT -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="deployment">7 &mdash; Production Deployment</h1>
+
+<h2>DNS Setup</h2>
+<table>
+  <tr><th>Record</th><th>Type</th><th>Value</th></tr>
+  <tr><td><code>teslim.unibooks.com.ng</code></td><td>A</td><td>Vercel IPs (portfolio)</td></tr>
+  <tr><td><code>api.teslim.unibooks.com.ng</code></td><td>A</td><td>Your VPS IP</td></tr>
+</table>
+
+<h2>VPS Setup (aaPanel)</h2>
+<ol>
+  <li>Create a new site in aaPanel for <code>api.teslim.unibooks.com.ng</code></li>
+  <li>Point the document root to <code>/www/wwwroot/licensing-app/public</code></li>
+  <li>Issue a free Let's Encrypt SSL certificate</li>
+  <li>Set the production <code>.env</code> values (see below)</li>
+  <li>Run <code>php artisan migrate --force</code></li>
+  <li>Create the admin user: <code>php artisan make:filament-user</code></li>
+</ol>
+
+<h2>Production .env (on VPS)</h2>
+<pre><code>APP_NAME="Bolakaz Licensing"
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://api.teslim.unibooks.com.ng
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=licensing
+DB_USERNAME=root
+DB_PASSWORD=(your-db-password)
+
+CORS_ALLOWED_ORIGIN=https://teslim.unibooks.com.ng
+
+PAYSTACK_SECRET_KEY=sk_live_xxxxxxxx
+PAYSTACK_PUBLIC_KEY=pk_live_xxxxxxxx
+
+MAIL_MAILER=smtp
+MAIL_HOST=(your-smtp-host)
+MAIL_PORT=587
+MAIL_USERNAME=(your-smtp-username)
+MAIL_PASSWORD=(your-smtp-password)
+MAIL_FROM_ADDRESS=noreply@bolakaz.ng
+MAIL_FROM_NAME="Bolakaz Licensing"</code></pre>
+
+<h2>Vercel Setup</h2>
+<p>In the Vercel dashboard for your portfolio project, add an environment variable:</p>
+<table>
+  <tr><th>Key</th><th>Value</th></tr>
+  <tr><td><code>VITE_API_BASE</code></td><td><code>https://api.teslim.unibooks.com.ng</code></td></tr>
+</table>
+<p>Redeploy the portfolio after setting this variable.</p>
+
+<h2>Paystack Webhook</h2>
+<p>In your Paystack dashboard, set the webhook URL to:</p>
+<pre><code>https://api.teslim.unibooks.com.ng/api/webhook/paystack</code></pre>
+<p>This ensures license codes are generated even if the user closes their browser
+after payment (the webhook is the fallback).</p>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 8. TROUBLESHOOTING -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<h1 id="troubleshooting">8 &mdash; Troubleshooting &amp; FAQ</h1>
+
+<h2>Common Issues</h2>
+
+<h3>"The purchase page shows 'Product not found'"</h3>
+<ul>
+  <li>Check that the product <code>is_active</code> is ON in Filament</li>
+  <li>Verify the slug in the URL matches exactly (case-sensitive)</li>
+  <li>Check that <code>VITE_API_BASE</code> is set correctly in Vercel and the portfolio was redeployed</li>
+</ul>
+
+<h3>"Payment goes through but no code appears"</h3>
+<ul>
+  <li>Check the Laravel logs on the VPS: <code>storage/logs/laravel.log</code></li>
+  <li>Verify the Paystack webhook URL is set correctly in the Paystack dashboard</li>
+  <li>The webhook is the fallback &mdash; if the browser callback fails, the webhook should still generate the code</li>
+</ul>
+
+<h3>"Redeem API returns 'invalid credentials'"</h3>
+<ul>
+  <li>Verify the <code>client_key</code> and <code>api_secret</code> match what was generated</li>
+  <li>Check that the credential's <code>is_active</code> is ON in Filament</li>
+  <li>Remember: the <code>api_secret</code> is shown only once. If lost, create a new credential</li>
+</ul>
+
+<h3>"Code redeems successfully but unlocks the wrong product"</h3>
+<p>This can't happen. The redemption API checks that the code's <code>licensable_product_id</code>
+matches the credential's <code>licensable_product_id</code>. A Stock-Taking credential can
+never redeem a CRM code.</p>
+
+<h2>FAQ</h2>
+
+<h3>Can a single client site use multiple products?</h3>
+<p>Yes. Create one credential per product for that site. They'll have multiple
+sets of <code>client_key</code> + <code>api_secret</code> — one per product. When redeeming a code,
+they use the credential that matches the product the code belongs to.</p>
+
+<h3>What happens if someone tries to use the same code twice?</h3>
+<p>The database transaction with <code>lockForUpdate()</code> prevents this. Even if two
+requests arrive simultaneously for the same code, only one succeeds. The second
+gets <code>{ "valid": false }</code>.</p>
+
+<h3>Can I change pricing after codes have been sold?</h3>
+<p>Yes. Changing a product's <code>daily_rate</code> or a tier's <code>discount_pct</code> only affects
+<strong>future</strong> purchases. Existing codes are unaffected. To remove a tier without
+deleting it, toggle <code>is_active</code> to OFF.</p>
+
+<h3>What if Paystack is down?</h3>
+<p>Users will see a "Payment initialization failed" error. The purchase flow won't
+proceed. Once Paystack recovers, everything works again. No codes can be lost
+because codes are only generated after confirmed payment.</p>
+
+<h3>Is my api_secret safe?</h3>
+<p>Yes. It's stored as a bcrypt hash in the database (not plaintext). The
+middleware uses <code>Hash::check()</code> to verify it — the same secure approach
+Laravel uses for user passwords. The <code>client_key</code> is a public identifier
+(like a username) and is stored in plaintext for fast indexed lookup.</p>
+
+<hr style="margin: 48px 0; border: none; border-top: 2px solid var(--gray-200);">
+
+<p style="text-align: center; color: var(--gray-500); font-size: 13px;">
+  Bolakaz Licensing &mdash; User Manual v1.0 &mdash; July 2026<br>
+  For support, contact the system administrator.
+</p>
+
+</body>
+</html>
