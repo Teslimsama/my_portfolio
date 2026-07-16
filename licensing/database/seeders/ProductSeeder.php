@@ -8,18 +8,21 @@ use Illuminate\Database\Seeder;
 class ProductSeeder extends Seeder
 {
     /**
-     * Seed the initial product(s) and their price tiers.
+     * Seed the initial product and its price tiers.
+     * Idempotent — safe to run multiple times.
      */
     public function run(): void
     {
-        $product = LicensableProduct::create([
-            'slug' => 'bolakaz-stocktaking',
-            'name' => 'Bolakaz Stock-Taking',
-            'code_prefix' => 'BLKZ',
-            'description' => 'Stock-taking and inventory management pass for Bolakaz-powered shop websites.',
-            'daily_rate' => 2000.00,
-            'is_active' => true,
-        ]);
+        $product = LicensableProduct::updateOrCreate(
+            ['slug' => 'bolakaz-stocktaking'],
+            [
+                'name' => 'Bolakaz Stock-Taking',
+                'code_prefix' => 'BLKZ',
+                'description' => 'Stock-taking and inventory management pass for Bolakaz-powered shop websites.',
+                'daily_rate' => 2000.00,
+                'is_active' => true,
+            ],
+        );
 
         $tiers = [
             [
@@ -49,7 +52,10 @@ class ProductSeeder extends Seeder
         ];
 
         foreach ($tiers as $tier) {
-            $product->priceTiers()->create(array_merge($tier, ['is_active' => true]));
+            $product->priceTiers()->updateOrCreate(
+                ['tier_key' => $tier['tier_key']],
+                array_merge($tier, ['is_active' => true]),
+            );
         }
     }
 }
