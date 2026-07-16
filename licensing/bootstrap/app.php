@@ -21,6 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'api/webhook/paystack',
         ]);
     })
+    ->withSchedule(function ($schedule) {
+        // Purge expired purchase intents hourly
+        $schedule->command('cache:clear-expired-purchase-intents')->hourly();
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),
